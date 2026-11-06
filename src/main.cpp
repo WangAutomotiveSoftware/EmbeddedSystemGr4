@@ -83,14 +83,14 @@ void TaskButtonRead(void *pvParameters) {
     if(digitalRead(BTN_PARK) == LOW) { display_mode = 1; }
     if(digitalRead(BTN_RAIN) == LOW) { display_mode = 2; }
     if(digitalRead(BTN_THROT) == LOW) { display_mode = 3; }
-    vTaskDelay(pdMS_TO_TICKS(100)); // Chống dội phím (Debounce)
+    vTaskDelay(pdMS_TO_TICKS(100)); 
   }
 }
 
 // --- TASK ĐỌC CẢM BIẾN & LOG & CẢNH BÁO ---
 void TaskSensorsAndSafety(void *pvParameters) {
   char logBuffer[100];
-  static bool throttleBeep = false; // Biến trạng thái tạo tiếng bíp ngắt quãng
+  static bool throttleBeep = false; 
   
   for(;;) {
     float t = dht.readTemperature();
@@ -124,9 +124,9 @@ void TaskSensorsAndSafety(void *pvParameters) {
       tone(BUZZER_PIN, 1000); 
     } 
     else if (shared_throttle > 80) {
-      // Mức 2: Cảnh báo (Chân ga > 80%) -> Còi bíp ngắt quãng, âm trầm
+      // Mức 2: Cảnh báo (Chân ga > 80%) 
       digitalWrite(LED_PIN, LOW);
-      throttleBeep = !throttleBeep; // Đảo trạng thái còi mỗi 500ms
+      throttleBeep = !throttleBeep; 
       if (throttleBeep) tone(BUZZER_PIN, 500);
       else noTone(BUZZER_PIN);
     } 
@@ -189,7 +189,7 @@ void TaskDisplayUpdate(void *pvParameters) {
        display.println("! DANGER !");
     }
 
-    display.setTextSize(2); // Cỡ chữ lớn
+    display.setTextSize(2); 
     display.setCursor(0, 20);
 
     switch(display_mode) {
