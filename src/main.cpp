@@ -5,7 +5,7 @@
 #include <DHT.h>
 #include <ESP32Servo.h>
 
-// --- ĐỊNH NGHĨA CHÂN KẾT NỐI ---
+
 #define DHTPIN 15
 #define DHTTYPE DHT22
 #define POT_PIN 34       
@@ -32,7 +32,7 @@ float shared_temp = 0.0;
 int shared_distance = 0;
 int shared_rain = 0;
 int shared_throttle = 0;
-int display_mode = 0; // 0: Temp, 1: Park, 2: Rain, 3: Throttle
+int display_mode = 0; 
 
 // --- KHAI BÁO CÁC TASK ---
 void TaskSensorsAndSafety(void *pvParameters);
